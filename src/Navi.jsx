@@ -20,7 +20,7 @@ export default class Navi extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Step Shop</NavbarBrand>
+        <NavbarBrand href="/"><i class="fas fa-shopping-cart"></i> Step Shop</NavbarBrand>
         <NavbarToggler onClick={true} />
         <Collapse isOpen={true} navbar>
           <Nav className="mr-auto" navbar>
@@ -32,7 +32,7 @@ export default class Navi extends Component {
             </NavItem>
             
           </Nav>
-          <CartList/>
+          <CartList removeFromCart={this.props.removeFromCart} carts={this.props.carts}/>
           <Badge color="success">{this.props.cartItemCount}</Badge>
         </Collapse>
       </Navbar>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Table,Button } from "reactstrap";
+import { Table, Button, Spinner } from "reactstrap";
 export default class ProductList extends Component {
-  render() {
-    const { products } = this.props;
-    return (
-      <div>
-        <p>{this.props.selectedCategory.categoryName}</p>
+  getTable = () => {
+    const { loader, products } = this.props;
+    if (loader)
+      return <Spinner style={{ width: "3rem", height: "3rem" }} type="grow" />;
+    else {
+      return (
         <Table>
           <thead>
             <tr>
@@ -23,14 +24,29 @@ export default class ProductList extends Component {
                   <td>{product.quantityPerUnit}</td>
                   <td>{product.unitPrice}</td>
                   <td>
-                  <Button onClick={()=>this.props.addToCart(product)} color="success">Add</Button>{"  "}
-                  <Button color="danger">Delete</Button>
+                    <Button
+                      onClick={() => this.props.addToCart(product)}
+                      color="success"
+                    ><i class="fas fa-cart-arrow-down"></i>
+                    </Button>
+                    {"  "}
+                    <Button color="danger"><i class="fas fa-trash"></i></Button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </Table>
+      );
+    }
+  };
+
+  render() {
+    const { products } = this.props;
+    return (
+      <div>
+
+        {this.getTable()}
       </div>
     );
   }

@@ -33,7 +33,7 @@ export default class CartList extends Component {
                     <Badge color="danger" onClick={()=>this.props.removeFromCart(cartItem.product.id)}><i class="far fa-calendar-times"></i></Badge>
 
                   </DropdownItem>
-                ))}
+                ))} 
               </>
             ):<p>Any item not found</p>}
 
